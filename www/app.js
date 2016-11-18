@@ -60,7 +60,8 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				var key = beacon.uuid + ':' + beacon.major + ':' + beacon.minor;
 				beacons[key] = beacon;
-			}
+
+
 		};
 
 		// Called when starting to monitor a region.
@@ -125,13 +126,14 @@ var app = (function()
 
 		var timeNow = Date.now();
 
+
 		// Update beacon list.
 		$.each(beacons, function(key, beacon)
 		{
 			// Only show beacons that are updated during the last 60 seconds.
 			if (beacon.timeStamp + 60000 > timeNow)
 			{
-				/*// Map the RSSI value to a width in percent for the indicator.
+				// Map the RSSI value to a width in percent for the indicator.
 				var rssiWidth = 1; // Used when RSSI is zero or greater.
 				if (beacon.rssi < -100) { rssiWidth = 100; }
 				else if (beacon.rssi < 0) { rssiWidth = 100 + beacon.rssi; }
@@ -149,20 +151,24 @@ var app = (function()
 					+ 	'<div style="background:rgb(255,128,64);height:20px;width:'
 					+ 		rssiWidth + '%;"></div>'
 					+ '</li>'
-				);*/
+				);
+
+				$('#warning').remove();
+				$('#found-beacons').append(element);
+
 
 				var meters = beacon.accuracy;
 
 
-				if(beacon.major == "" & beacon.minor == "" & meters < 1) {
-					window.open('www.google.html');
-
+				if(meters < 1 & beacon.major == 62910)
+				{
+					//window.open('region1.html');
+					window.open('http://www.google.com');
+					break;
 				}
 
 
 
-				$('#warning').remove();
-				$('#found-beacons').append(element);
 
 
 			}

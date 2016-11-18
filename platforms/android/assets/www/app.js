@@ -60,7 +60,8 @@ var app = (function()
 				beacon.timeStamp = Date.now();
 				var key = beacon.uuid + ':' + beacon.major + ':' + beacon.minor;
 				beacons[key] = beacon;
-			}
+
+
 		};
 
 		// Called when starting to monitor a region.
@@ -125,6 +126,7 @@ var app = (function()
 
 		var timeNow = Date.now();
 
+
 		// Update beacon list.
 		$.each(beacons, function(key, beacon)
 		{
@@ -153,6 +155,20 @@ var app = (function()
 
 				$('#warning').remove();
 				$('#found-beacons').append(element);
+
+
+				var meters = beacon.accuracy;
+
+
+				if(meters < 1 & beacon.major == 62910)
+				{
+					//window.open('region1.html');
+					window.open('http://www.google.com');
+					break;
+				}
+
+
+
 
 
 			}
